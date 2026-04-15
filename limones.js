@@ -34,12 +34,14 @@ function dibujarPersonaje(){
 function moverIzquierda(){
     personajeX=personajeX - 10;
     actualizarPantalla();
+    detectarColision();
 
 }
 
 function moverDerecha(){
     personajeX=personajeX + 10;
     actualizarPantalla();
+    detectarColision();
 
 }
 
@@ -74,4 +76,15 @@ function dibujarLimon(){
 function bajarLimon(){
     limonY=limonY + 10;
     actualizarPantalla();
+}
+
+function detectarColision(){
+    if(limonX + ANCHO_LIMON > personajeX && 
+        limonX <personajeX+ANCHO_PERSONAJE &&
+        limonY + ALTURA_LIMON > personajeY &&
+        limonY < personajeY + ALTURA_PERSONAJE){
+        alert("Atrapado");
+       // reiniciarJuego();
+    }
+
 }
