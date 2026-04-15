@@ -17,10 +17,12 @@ let limonY=5;
 let puntaje=0;
 let vidas=3;
 
+
 let velocidadCaida=200;
+let intervaloLimon=null;
 
 function iniciar(){
-    setInterval(bajarLimon, velocidadCaida);
+    intervaloLimon=setInterval(bajarLimon, velocidadCaida);
     dibujarSuelo();
     dibujarPersonaje();
     dibujarLimon();
@@ -39,17 +41,17 @@ function dibujarPersonaje(){
 }
 
 function moverIzquierda(){
-    personajeX=personajeX - 10;
+    if(personajeX > 0){
+        personajeX = personajeX - 10;
+    }
     actualizarPantalla();
-    
-
 }
 
 function moverDerecha(){
-    personajeX=personajeX + 10;
+    if(personajeX + ANCHO_PERSONAJE < canvas.width){
+        personajeX = personajeX + 10;
+    }
     actualizarPantalla();
-   
-
 }
 
 function actualizarPantalla(){
@@ -61,8 +63,19 @@ function actualizarPantalla(){
 }
 
 function reiniciarJuego(){
+    clearInterval(intervaloLimon);
+    intervaloLimon=setInterval(bajarLimon, velocidadCaida);
     personajeX=canvas.width/2;
     personajeY=canvas.height - (ALTURA_SUELO + ALTURA_PERSONAJE);
+
+    puntaje=0;
+    vidas=3;
+
+    mostrarEnSpan("txtPuntaje", puntaje);
+    mostrarEnSpan("txtVidas", vidas);
+    ocultarMensaje();
+
+
     actualizarPantalla();
     aparecerLimon();
 }
@@ -93,18 +106,45 @@ function detectarAtrapado(){
        mostrarEnSpan("txtPuntaje", puntaje);
     }
 
+    if(puntaje === 5){
+            clearInterval(intervaloLimon);
+            mostrarMensaje("GANASTE", "#00ff88");
+            setTimeout(() => reiniciarJuego(), 2000);
+        }
+
 }
 
 function detectarPiso(){
     if(limonY + ALTURA_LIMON >= canvas.height - ALTURA_SUELO){
+       
         aparecerLimon();
         vidas=vidas - 1;
         mostrarEnSpan("txtVidas", vidas);
     }
+
+    if(vidas === 0){
+         clearInterval(intervaloLimon);
+            mostrarMensaje("GAME OVER", "#ff3b3b");
+            setTimeout(() => reiniciarJuego(), 2000);
+        }
 }
 
 function aparecerLimon(){
     limonX = generarAleatorio(0,canvas.width - ANCHO_LIMON);
     limonY = 5;
     actualizarPantalla();
+}
+
+function mostrarMensaje(texto, color){
+    let panel = document.getElementById("panelMensaje");
+    let textoMsg = document.getElementById("textoMensaje");
+
+    textoMsg.textContent = texto;
+    textoMsg.style.color = color;
+
+    panel.style.display = "block";
+}
+
+function ocultarMensaje(){
+    document.getElementById("panelMensaje").style.display = "none";
 }
