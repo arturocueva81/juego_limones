@@ -4,7 +4,7 @@ body {
   font-family: 'Orbitron', sans-serif;
   background: linear-gradient(to bottom, #0f172a, #020617);
   background-image: url('fondo2.avif');
-  color: #00f7ff;
+  color: #00ff80;
   text-align: center;
   margin: 0;
   padding: 20px;
@@ -39,7 +39,7 @@ canvas {
   margin: 20px auto;
 }
 
-/* PANEL (PUNTAJE Y VIDAS) */
+/* PANEL PUNTAJE Y VIDAS */
 .panel {
   display: flex;
   justify-content: space-around;
@@ -51,7 +51,7 @@ canvas {
   font-size: 18px;
 }
 
-/* CONTENEDOR DE BOTONES */
+/* CONTENEDOR BOTONES */
 .botones {
   margin-top: 20px;
   padding: 15px;
@@ -60,7 +60,7 @@ canvas {
   background: rgba(0, 0, 0, 0.7);
 }
 
-/* BOTONES */
+/* BASE — todos los botones */
 .botones button {
   margin: 5px;
   padding: 12px 18px;
@@ -74,7 +74,6 @@ canvas {
   transition: all 0.2s;
 }
 
-/* HOVER */
 .botones button:hover {
   background: #00f7ff;
   color: black;
@@ -82,12 +81,59 @@ canvas {
   transform: scale(1.05);
 }
 
-/* EFECTO ACTIVO */
 .botones button:active {
   transform: scale(0.95);
   box-shadow: 0 0 5px #00f7ff;
 }
 
+/* BOTONES DIRECCIÓN — celeste fijo, solo brilla el borde en hover */
+.botones button.btn-direccion {
+  color: #67e8f9 !important;
+  border-color: #67e8f9 !important;
+  background: black !important;
+  box-shadow: 0 0 8px #67e8f955 !important;
+  text-shadow: 0 0 6px #67e8f9;
+}
+
+.botones button.btn-direccion:hover {
+  background: black !important;
+  color: #67e8f9 !important;
+  border-color: #67e8f9 !important;
+  box-shadow: 0 0 20px #67e8f9, 0 0 45px #67e8f9 !important;
+  transform: scale(1.05);
+}
+
+.botones button.btn-direccion:active {
+  background: black !important;
+  color: #67e8f9 !important;
+  box-shadow: 0 0 8px #67e8f9 !important;
+  transform: scale(0.95);
+}
+
+/* BOTÓN REINICIAR — rosa neón */
+.botones button.btn-reiniciar {
+  color: #ff00cc !important;
+  border-color: #ff00cc !important;
+  background: black !important;
+  box-shadow: 0 0 10px #ff00cc, 0 0 25px #ff00cc55 !important;
+  text-shadow: 0 0 8px #ff00cc;
+}
+
+.botones button.btn-reiniciar:hover {
+  background: #ff00cc !important;
+  color: black !important;
+  box-shadow: 0 0 25px #ff00cc, 0 0 50px #ff00cc !important;
+  transform: scale(1.05);
+}
+
+.botones button.btn-reiniciar:active {
+  background: #ff00cc !important;
+  color: black !important;
+  box-shadow: 0 0 10px #ff00cc !important;
+  transform: scale(0.95);
+}
+
+/* PANEL MENSAJE */
 #panelMensaje {
   display: none;
   margin-top: 15px;
