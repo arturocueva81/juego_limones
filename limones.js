@@ -98,20 +98,33 @@ function bajarLimon(){
 
 function detectarAtrapado(){
     if(limonX + ANCHO_LIMON > personajeX && 
-        limonX <personajeX+ANCHO_PERSONAJE &&
+        limonX < personajeX + ANCHO_PERSONAJE &&
         limonY + ALTURA_LIMON > personajeY &&
         limonY < personajeY + ALTURA_PERSONAJE){
+
+        // Atrapado: aparecer nuevo limon y sumar puntaje
         aparecerLimon();
-        puntaje=puntaje + 1;
-       mostrarEnSpan("txtPuntaje", puntaje);
-    }
+        puntaje = puntaje + 1;
+        mostrarEnSpan("txtPuntaje", puntaje);
 
-    if(puntaje === 5){
+        // Ajustar la velocidad de caida según el puntaje
+        if(puntaje === 3){
+            velocidadCaida = 150; // mas rapido
             clearInterval(intervaloLimon);
-            mostrarMensaje("GANASTE", "#00ff88");
-            setTimeout(() => reiniciarJuego(), 2000);
+            intervaloLimon = setInterval(bajarLimon, velocidadCaida);
         }
-
+        else if(puntaje === 6){
+            velocidadCaida = 100; // aun mas rapido
+            clearInterval(intervaloLimon);
+            intervaloLimon = setInterval(bajarLimon, velocidadCaida);
+        }
+        else if(puntaje === 10){
+            // Ganador: detener juego y mostrar mensaje creativo
+            clearInterval(intervaloLimon);
+            mostrarMensaje("TIENES LOS LIMONES, AHORA TE FALTA SAL Y TEQUILA", "#ffd700");
+            setTimeout(() => reiniciarJuego(), 3000);
+        }
+    }
 }
 
 function detectarPiso(){
