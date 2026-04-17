@@ -66,7 +66,8 @@ function actualizarPantalla(){
 
 }
 
-function reiniciarJuego(){
+function reiniciar(){
+    velocidadCaida=200;
     detenerCaida();
     intervaloLimon=setInterval(bajarLimon, velocidadCaida);
     personajeX=canvas.width/2;
@@ -78,8 +79,6 @@ function reiniciarJuego(){
     mostrarEnSpan("txtPuntaje", puntaje);
     mostrarEnSpan("txtVidas", vidas);
     ocultarMensaje();
-
-
     actualizarPantalla();
     aparecerLimon();
 }
@@ -126,7 +125,7 @@ function detectarAtrapado(){
             // Ganador: detener juego y mostrar mensaje creativo
             clearInterval(intervaloLimon);
             mostrarMensaje("TIENES LOS LIMONES, AHORA TE FALTA SAL Y TEQUILA", "#ffd700");
-            setTimeout(() => reiniciarJuego(), 3000);
+            //setTimeout(() => reiniciarJuego(), 3000);
         }
     }
 }
@@ -142,7 +141,7 @@ function detectarPiso(){
     if(vidas === 0){
          clearInterval(intervaloLimon);
             mostrarMensaje("GAME OVER", "#ff3b3b");
-            setTimeout(() => reiniciarJuego(), 2000);
+            //setTimeout(() => reiniciarJuego(), 2000);
         }
 }
 
