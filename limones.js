@@ -30,6 +30,10 @@ function iniciar(){
 
 }
 
+function detenerCaida(){
+    clearInterval(intervaloLimon);
+}
+
 function dibujarSuelo(){
     ctx.fillStyle="blue";
     ctx.fillRect(0, canvas.height - ALTURA_SUELO, canvas.width, ALTURA_SUELO);
@@ -63,7 +67,7 @@ function actualizarPantalla(){
 }
 
 function reiniciarJuego(){
-    clearInterval(intervaloLimon);
+    detenerCaida();
     intervaloLimon=setInterval(bajarLimon, velocidadCaida);
     personajeX=canvas.width/2;
     personajeY=canvas.height - (ALTURA_SUELO + ALTURA_PERSONAJE);
@@ -161,3 +165,5 @@ function mostrarMensaje(texto, color){
 function ocultarMensaje(){
     document.getElementById("panelMensaje").style.display = "none";
 }
+
+
