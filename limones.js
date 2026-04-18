@@ -8,7 +8,7 @@ const ANCHO_PERSONAJE=40;
 const ANCHO_LIMON=20;
 const ALTURA_LIMON=20;
 
-let personajeX=canvas.width/2;
+let personajeX=canvas.width-ANCHO_PERSONAJE;
 let personajeY=canvas.height - (ALTURA_SUELO + ALTURA_PERSONAJE);
 
 let limonX=canvas.width/2;
@@ -18,7 +18,7 @@ let puntaje=0;
 let vidas=3;
 
 
-let velocidadCaida=200;
+let velocidadCaida=50;
 let intervaloLimon=null;
 
 function iniciar(){
